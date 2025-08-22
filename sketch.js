@@ -4,6 +4,7 @@
   A - Rotate CCW
   D - Rotate CW
 */
+const DEBUG = false;
 
 let map_x = 8;
 let map_y = 8;
@@ -53,6 +54,13 @@ function setup() {
   delta_y = sin(player_angle);
   init_walls();
   
+  slider = createSlider(4, 750, num_rays);
+  slider.input(update_ray_count);
+}
+
+function update_ray_count() {
+    num_rays = slider.value();
+    fov_step_size = fov / num_rays;
 }
 
 function draw() {
@@ -179,13 +187,13 @@ function draw_rays() {
     stroke(intersection.r - shading, intersection.g - shading, intersection.b - shading);
     fill(intersection.r, intersection.g, intersection.b);
     rect(screen_offset + (i * column_width), ceil_offset + ((max_height - column_height) / 2), column_width, column_height)
-    if (first_pass) {
+    if (first_pass && DEBUG) {
       console.log(`ray #${num_ray} height = ${Math.round(column_height)}, color = r${intersection.r} g${intersection.g} b${intersection.b}`);
     }
     
     num_ray++;
   }
-  if (first_pass) {
+  if (first_pass && DEBUG) {
     first_pass = false;
     console.log(player_x + " " + player_y)
   }
