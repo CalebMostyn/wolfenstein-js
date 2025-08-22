@@ -54,18 +54,27 @@ function setup() {
   delta_y = sin(player_angle);
   init_walls();
 
-  label = createDiv("Number of Rays: ");
+  controls_container = createDiv();
+  controls_container.style("margin", "20px");
+  createP("A - Rotate Right").parent(controls_container);
+  createP("D - Rotate Left").parent(controls_container);
+  createP("W - Move Forward").parent(controls_container);
+  createP("S - Move Backward").parent(controls_container);
+
+  slider_container = createDiv();
+  slider_container.style("margin", "20px");
+  slider_label = createSpan(`Number of Rays: ${num_rays} `);
+  slider_label.parent(slider_container);
   
   slider = createSlider(4, 750, num_rays);
   slider.input(update_ray_count);
-
-  slider_display = createDiv(slider.value());
+  slider.parent(slider_container);
 }
 
 function update_ray_count() {
-  slider_display.html(slider.value());
   num_rays = slider.value();
   fov_step_size = fov / num_rays;
+  slider_label.html(`Number of Rays: ${num_rays} `);
 }
 
 function draw() {
