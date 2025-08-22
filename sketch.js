@@ -53,14 +53,19 @@ function setup() {
   delta_x = cos(player_angle);
   delta_y = sin(player_angle);
   init_walls();
+
+  label = createDiv("Number of Rays: ");
   
   slider = createSlider(4, 750, num_rays);
   slider.input(update_ray_count);
+
+  slider_display = createDiv(slider.value());
 }
 
 function update_ray_count() {
-    num_rays = slider.value();
-    fov_step_size = fov / num_rays;
+  slider_display.html(slider.value());
+  num_rays = slider.value();
+  fov_step_size = fov / num_rays;
 }
 
 function draw() {
