@@ -15,7 +15,7 @@ let screen_height = 480; //map_y * map_size;
 
 let player_size = 20;
 let move_speed = 50;
-let rotate_speed = 50;
+let rotate_speed = 35;
 
 let first_pass = true;
 
