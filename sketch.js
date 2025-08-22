@@ -48,6 +48,7 @@ let map = [
 let walls = [];
 
 function setup() {
+  frameRate(60);
   createCanvas(screen_width, screen_height);
   angleMode(DEGREES);
   delta_x = cos(player_angle);
@@ -78,6 +79,9 @@ function update_ray_count() {
 }
 
 function draw() {
+  if (DEBUG) {
+    console.log(frameRate());
+  }
   background(0);
   
   // check for inputs
